@@ -72,7 +72,7 @@ angular
     };
 
     var insertSampleData = function() { saveObject(userDataKey, sampleData); };
-    var getUsersData = function() { getObject(userDataKey); };
+    var getUsersData = function() { return getObject(userDataKey); };
     var updateUsersData = function(updatedData) {
       saveObject(userDataKey, updatedData);
     };
