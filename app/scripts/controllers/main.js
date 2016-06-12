@@ -9,6 +9,6 @@
  */
 angular.module('angularExampleApp')
 
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', ['browserStorage', function (browserStorage) {
 
-  });
+  }]);

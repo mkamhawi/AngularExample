@@ -14,10 +14,10 @@ angular
     'ngRoute'
   ])
 
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider
-    
+
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
@@ -28,4 +28,8 @@ angular
         redirectTo: '/'
       });
 
-  });
+  }])
+
+  .run(['browserStorage', function(browserStorage) {
+    browserStorage.insertSampleData();
+  }]);
