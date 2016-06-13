@@ -33,7 +33,7 @@ angular.module('angularExampleApp')
             $mdToast.show(
               $mdToast.simple()
                 .textContent('Loading...')
-                .position(['top', 'right'])
+                .position('top right')
                 .hideDelay(3000)
             );
             browserStorage.deleteUser(id)
@@ -41,7 +41,7 @@ angular.module('angularExampleApp')
                 $mdToast.show(
                   $mdToast.simple()
                     .textContent(response)
-                    .position(['top', 'right'])
+                    .position('top right')
                     .hideDelay(2000)
                 );
                 delete vm.users[id];
@@ -49,7 +49,7 @@ angular.module('angularExampleApp')
                 $mdToast.show(
                   $mdToast.simple()
                     .textContent(rejection)
-                    .position(['top', 'right'])
+                    .position('top right')
                     .hideDelay(2000)
                 );
                 console.log(rejection);
@@ -82,7 +82,7 @@ angular.module('angularExampleApp')
             $mdToast.show(
               $mdToast.simple()
                 .textContent('Loading...')
-                .position(['top', 'right'])
+                .position('top right')
                 .hideDelay(3000)
             );
             browserStorage.updateUserData(id, response)
@@ -90,7 +90,7 @@ angular.module('angularExampleApp')
                 $mdToast.show(
                   $mdToast.simple()
                     .textContent(successMsg)
-                    .position(['top', 'right'])
+                    .position('top right')
                     .hideDelay(2000)
                 );
                 console.log(successMsg);
@@ -98,7 +98,7 @@ angular.module('angularExampleApp')
                 $mdToast.show(
                   $mdToast.simple()
                     .textContent(rejection)
-                    .position(['top', 'right'])
+                    .position('top right')
                     .hideDelay(2000)
                 );
                 console.log(rejection);
