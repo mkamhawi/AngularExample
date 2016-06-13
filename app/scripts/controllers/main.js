@@ -9,6 +9,7 @@
  */
 angular.module('angularExampleApp')
 
-  .controller('MainCtrl', ['browserStorage', function (browserStorage) {
-
+  .controller('MainCtrl', ['$scope', 'browserStorage', function ($scope, browserStorage) {
+    var vm = $scope.vm = {};
+    vm.users = browserStorage.getUsersData();
   }]);

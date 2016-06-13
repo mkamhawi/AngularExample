@@ -1,3 +1,13 @@
 <div class="row marketing">
-
+  <div class="input">
+    <input type="text" class="form-control" placeholder="search..." ng-model="filterText">
+  </div>
+</div>
+<div class="row">
+  <div class="list-group">
+    <a href="#/" class="list-group-item text-center" ng-repeat="(id, user) in vm.users | objectFilter:{email: filterText}">
+      <h4>{{user.firstname}} {{user.lastname}}</h4>
+      <h6>{{user.email}}</h6>
+    </a>
+  </div>
 </div>
