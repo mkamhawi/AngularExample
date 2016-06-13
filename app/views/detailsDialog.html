@@ -1,0 +1,18 @@
+<md-dialog aria-label="Edit user details"  ng-cloak>
+  <form>
+    <md-dialog-content>
+      <input type="text" class="form-control" placeholder="Username" ng-model="dialog.userDetails.username">
+      <input type="text" class="form-control" placeholder="First name" ng-model="dialog.userDetails.firstname">
+      <input type="text" class="form-control" placeholder="Last name" ng-model="dialog.userDetails.lastname">
+      <input type="email" class="form-control" placeholder="Email address" ng-model="dialog.userDetails.email">
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="dialog.cancel()">
+       Cancel
+      </md-button>
+      <md-button ng-click="dialog.save(dialog.userDetails)" style="margin-right:20px;">
+        Save
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

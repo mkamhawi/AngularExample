@@ -11,7 +11,8 @@
 angular
 
   .module('angularExampleApp', [
-    'ngRoute'
+    'ngRoute',
+    'ngMaterial'
   ])
 
   .config(['$routeProvider', function ($routeProvider) {

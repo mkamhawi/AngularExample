@@ -72,15 +72,27 @@ angular
     };
 
     var insertSampleData = function() { saveObject(userDataKey, sampleData); };
+
     var getUsersData = function() { return getObject(userDataKey); };
+
     var updateUsersData = function(updatedData) {
       saveObject(userDataKey, updatedData);
+    };
+
+    var updateUserData = function(id, updatedUserData) {
+      var users = getUsersData();
+      if(!angular.isObject(users)) {
+        users = {};
+      }
+      users[id] = updatedUserData;
+      saveObject(userDataKey, users);
     };
 
     return {
       insertSampleData: insertSampleData,
       getUsersData: getUsersData,
-      updateUsersData: updateUsersData
+      updateUsersData: updateUsersData,
+      updateUserData: updateUserData
     };
 
   }]);
