@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="list-group">
-    <div class="list-group-item text-center" ng-repeat="(id, user) in vm.users | objectFilter:{email: filterText}">
+    <div class="list-group-item text-center" ng-repeat="(id, user) in vm.users | objectFilter:{email: filterText, firstname: filterText, lastname: filterText}">
       <h4 class="list-group-item-heading">{{user.firstname}} {{user.lastname}}</h4>
       <h6 class="list-group-item-text">{{user.email}}</h6>
       <p class="btn-group"><a ng-click="vm.edit($event, id)" class="btn btn-primary" role="button">Edit</a> <a ng-click="vm.toggleItemState($event)" class="btn btn-default" role="button">Enable/Disable</a> <a ng-click="vm.delete($event, id)" class="btn btn-danger" role="button">X</a></p>
