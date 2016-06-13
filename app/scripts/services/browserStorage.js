@@ -2,7 +2,7 @@ angular
 
   .module('angularExampleApp')
 
-  .factory('browserStorage', ['$window', function($window) {
+  .factory('browserStorage', ['$window', '$q', function($window, $q) {
 
     var userDataKey = "user_data";
     var sampleData = {
@@ -80,19 +80,43 @@ angular
     };
 
     var updateUserData = function(id, updatedUserData) {
-      var users = getUsersData();
-      if(!angular.isObject(users)) {
-        users = {};
-      }
-      users[id] = updatedUserData;
-      saveObject(userDataKey, users);
+      var deferred = $q.defer();
+      setTimeout(function() {
+        var users = getUsersData();
+        if(!angular.isObject(users)) {
+          deferred.reject("Error: check internet connectivity");
+        } else {
+          users[id] = updatedUserData;
+          saveObject(userDataKey, users);
+          deferred.resolve("Data updated successfully");
+        }
+      }, 2000);
+
+      return deferred.promise;
+    };
+
+    var deleteUser = function (id) {
+      var deferred = $q.defer();
+      setTimeout(function() {
+        var users = getUsersData();
+        if(!angular.isObject(users) || !users[id]) {
+          deferred.reject("Error: check internet connectivity");
+        } else {
+          delete users[id];
+          saveObject(userDataKey, users);
+          deferred.resolve("User deleted successfully");
+        }
+      }, 2000);
+
+      return deferred.promise;
     };
 
     return {
       insertSampleData: insertSampleData,
       getUsersData: getUsersData,
       updateUsersData: updateUsersData,
-      updateUserData: updateUserData
+      updateUserData: updateUserData,
+      deleteUser: deleteUser
     };
 
   }]);

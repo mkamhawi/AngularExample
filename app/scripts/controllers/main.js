@@ -9,7 +9,7 @@
  */
 angular.module('angularExampleApp')
 
-  .controller('MainCtrl', ['$scope', '$mdDialog', 'browserStorage', function ($scope, $mdDialog, browserStorage) {
+  .controller('MainCtrl', ['$scope', '$mdDialog', '$mdToast', 'browserStorage', function ($scope, $mdDialog, $mdToast, browserStorage) {
     var vm = $scope.vm = {};
     vm.users = browserStorage.getUsersData();
     vm.toggleItemState = function (event) {
@@ -30,8 +30,30 @@ angular.module('angularExampleApp')
           .cancel('Cancel');
       $mdDialog.show(confirm)
           .then(function() {
-            delete vm.users[id];
-            browserStorage.updateUsersData(vm.users);
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent('Loading...')
+                .position(['top', 'right'])
+                .hideDelay(3000)
+            );
+            browserStorage.deleteUser(id)
+              .then(function(response) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(response)
+                    .position(['top', 'right'])
+                    .hideDelay(2000)
+                );
+                delete vm.users[id];
+              }, function(rejection) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(rejection)
+                    .position(['top', 'right'])
+                    .hideDelay(2000)
+                );
+                console.log(rejection);
+              });
           }, function() {
             console.log("Delete command cancelled!");
           });
@@ -57,7 +79,30 @@ angular.module('angularExampleApp')
           if(!response || response === 'cancelled') {
             console.log("Edit command cancelled!");
           } else {
-            browserStorage.updateUserData(id, response);
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent('Loading...')
+                .position(['top', 'right'])
+                .hideDelay(3000)
+            );
+            browserStorage.updateUserData(id, response)
+              .then(function(successMsg) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(successMsg)
+                    .position(['top', 'right'])
+                    .hideDelay(2000)
+                );
+                console.log(successMsg);
+              }, function(rejection) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(rejection)
+                    .position(['top', 'right'])
+                    .hideDelay(2000)
+                );
+                console.log(rejection);
+              });
           }
         });
     };
