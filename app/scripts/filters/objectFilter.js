@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('angularExampleApp')
 
 .filter('objectFilter', function() {
